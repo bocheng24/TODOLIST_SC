@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 // Components
 import Header from './components/Header';
-import TodoItem from './components/TodoItem'
+import TodoList from './components/TodoList';
 
 const Wrapper = styled.div`
   background-color: #181818;
@@ -51,8 +51,7 @@ function App() {
           <TodoContent>
             <Title>Dashboard</Title>
             <Greeting>Good Day, Joe!</Greeting>
-            {[<h2>Item 1</h2>, <h2>Item 2</h2>]}
-            <TodoItem />
+            <TodoList />
           </TodoContent>
         </MainContent>
       </Main>

@@ -11,7 +11,7 @@ const ListItem = styled.div`
     display: flex;
     align-items: center;
     height: 55px;
-    padding: 15px 22px;
+    padding: 15px 26px;
     transition: 0.3s;
 
 

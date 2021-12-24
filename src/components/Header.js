@@ -25,7 +25,7 @@ const HeaderItem = styled.div`
 
     &:hover {
         background-color: #2d3436;
-        transition: 0.35s;
+        transition: all 0.35s;
         cursor: pointer;
     }
 `;
