@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TodoItem from './TodoItem'
 import styled from 'styled-components'
 
@@ -32,6 +32,7 @@ const CategoryIcon = styled.div`
     background-color: #FD76A1;
     padding: 6px 8px;
     border-radius: 5px;
+    margin-right: 5px;
 
 `;
 
@@ -58,13 +59,16 @@ const AddBtn = styled.div`
     }
 
     &:hover {
-        background-color: rgba(76, 209, 55, 0.45);
+        background-color: rgba(140, 122, 230, 0.45);
     }
 `;
 
-
-
 function TodoList() {
+    const [todo, setTodo] = useState('');
+    const [todoList, setTodoList] = useState([]);
+
+
+
     return (
         <Wrapper>
             <CategoryHeader>
@@ -78,15 +82,18 @@ function TodoList() {
 
                 <Placeholder />
 
-                <input type="text" />
+                <input type="text" value={ todo } onChange={ e => setTodo(e.target.value) }/>
 
-                <AddBtn>
+                <AddBtn onClick={ () => {
+                    todo.trim() === '' ? console.log('empty string') : setTodoList([todo.trim(), ...todoList]);
+                    setTodo('');
+                } }>
                     <i className="fas fa-plus"></i>
                 </AddBtn>
             </CategoryHeader>
-            <TodoItem />
-            <TodoItem />
-            <TodoItem />
+
+            { todoList.map( (todo, idx) => <TodoItem todo={ todo } key={ idx } /> ) }
+            
         </Wrapper>
     )
 }

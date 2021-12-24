@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const CheckBox = styled.i`
     margin-right: 12px;
-    font-size: 18px;
+    font-size: 15px;
     cursor: pointer;
 `;
 
@@ -45,6 +45,7 @@ const SaveBtn = styled.i`
     transition: all 0.35s;
     border-radius: 6.5px;
     margin: 0 -12px 0 4.5px;
+    font-size: 20px;
 
     &:hover {
         
@@ -52,11 +53,11 @@ const SaveBtn = styled.i`
     }
 `;
 
-function TodoItem() {
+function TodoItem({ todo }) {
     return (
         <ListItem>
             <CheckBox className="far fa-circle" />
-            <input type="text" />
+            <input value={ todo } onChange={() => {}} type="text" />
             <SaveBtn className="fas fa-check" />
             <TrashBtn className="fas fa-trash-alt" />
         </ListItem>
