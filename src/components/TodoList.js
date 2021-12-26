@@ -116,7 +116,7 @@ function TodoList() {
                     <i className="fas fa-plus"></i>
                 </AddBtn>
             </CategoryHeader>
-
+            
             { todoList.map( (todo, idx) => <TodoItem todoList={ todoList } 
                                                      setTodoList={ setTodoList } 
                                                      todo={ todo } 
