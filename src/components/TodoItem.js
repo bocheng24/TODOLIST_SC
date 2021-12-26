@@ -76,10 +76,13 @@ function TodoItem({ todoList, setTodoList, todo }) {
 
     const updateItem = () => {
 
-        if (editTodo.trim() !== todo.title && editTodo.trim() !== '') {
-            setTodoList(todoList.map(todo => todo.id === id ? {...todo, title: editTodo.trim()} : todo));
-        } else if (editTodo.trim() === '') {
-            console.log('empty string');
+        switch(editTodo.trim()) {
+            case '':
+                console.log('empty string');
+                break;
+            default:
+                setTodoList(todoList.map(todo => todo.id === id ? {...todo, title: editTodo.trim()} : todo));
+                break;
         }
     }
 
@@ -99,9 +102,11 @@ function TodoItem({ todoList, setTodoList, todo }) {
                    onChange={ e => setEditTodo(e.target.value) } 
                    type="text" 
             />
-            <div onClick={ updateItem }>
-                <SaveBtn className="fas fa-check" />
-            </div>
+            {todo.title !== editTodo && (
+                <div onClick={ updateItem }>
+                    <SaveBtn className="fas fa-check" />
+                </div>
+            )}
             <div onClick={ delItem } >
                 <TrashBtn className="fas fa-trash-alt" />
             </div>
