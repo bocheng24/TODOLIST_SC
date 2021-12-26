@@ -61,13 +61,37 @@ const AddBtn = styled.div`
     &:hover {
         background-color: rgba(140, 122, 230, 0.45);
     }
+
+    &:active {
+        transform: scale(0.93);
+    }
 `;
 
 function TodoList() {
     const [todo, setTodo] = useState('');
     const [todoList, setTodoList] = useState([]);
 
+    const addTodoHandler = () => {
+        
+        const todo_clean = todo.trim();
 
+        switch(todo_clean) {
+            case '':
+                console.log('empty string');
+                break;
+            default:
+                const todo_obj = {
+                    id: todoList.length,
+                    title: todo.trim(),
+                    completed: false
+                }
+
+                setTodoList([todo_obj, ...todoList]);
+                break;
+        }
+
+        setTodo('');
+    }
 
     return (
         <Wrapper>
@@ -81,19 +105,22 @@ function TodoList() {
                 </CategoryType>
 
                 <Placeholder />
-
-                <input type="text" value={ todo } onChange={ e => setTodo(e.target.value) }/>
-
-                <AddBtn onClick={ () => {
-                    todo.trim() === '' ? console.log('empty string') : setTodoList([todo.trim(), ...todoList]);
-                    setTodo('');
+                <form action="" onSubmit={ e => {
+                    e.preventDefault();
+                    addTodoHandler();
                 } }>
+                    <input type="text" value={ todo } onChange={ e => setTodo(e.target.value) }/>
+                </form>
+
+                <AddBtn onClick={ addTodoHandler }>
                     <i className="fas fa-plus"></i>
                 </AddBtn>
             </CategoryHeader>
 
-            { todoList.map( (todo, idx) => <TodoItem todo={ todo } key={ idx } /> ) }
-            
+            { todoList.map( (todo, idx) => <TodoItem todoList={ todoList } 
+                                                     setTodoList={ setTodoList } 
+                                                     todo={ todo } 
+                                                     key={ idx } /> ) }
         </Wrapper>
     )
 }
