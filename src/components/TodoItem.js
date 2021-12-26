@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-const CheckBox = styled.i`
-    margin-right: 12px;
-    font-size: 15px;
-    cursor: pointer;
-`;
-
-
 const ListItem = styled.div`
 display: flex;
 align-items: center;
@@ -26,11 +19,11 @@ input {
 }
 `;
 
-// const Wrapper = styled.div`
-//     padding: 10px 14px;
-//     border-radius: 3.5px;
-
-// `;
+const CheckBox = styled.i`
+    margin-right: 12px;
+    font-size: 15px;
+    cursor: pointer;
+`;
 
 const TrashBtn = styled.i`
     cursor: pointer;
@@ -69,15 +62,19 @@ const SaveBtn = styled.i`
 
 function TodoItem({ todoList, setTodoList, todo }) {
 
-    const id = todo.id;
+    let {id, completed} = todo;
     const [editTodo, setEditTodo] = useState('');
 
     useEffect(() => {
         setEditTodo(todo.title);
     }, [todo]);
 
+    const completeItem = () => {
+        completed = !completed;
+        setTodoList(todoList.map(todo => todo.id === id ? { ...todo, completed: completed } : todo));
+    }
+
     const updateItem = () => {
-        console.log(id);
 
         if (editTodo.trim() !== todo.title && editTodo.trim() !== '') {
             setTodoList(todoList.map(todo => todo.id === id ? {...todo, title: editTodo.trim()} : todo));
@@ -87,17 +84,21 @@ function TodoItem({ todoList, setTodoList, todo }) {
     }
 
     const delItem = () => {
-        // console.log(todo);
         const filtered = todoList.filter(todo => todo.id !== id);
         setTodoList(filtered);
     }
 
     return (
         <ListItem>
-            <div onClick={ e => {} }>
-                <CheckBox className="far fa-circle"  />
+            <div onClick={ completeItem } style={ {color: completed ? 'rgb(0, 184, 148)' : '#fbc531'} }>
+                <CheckBox className="fas fa-circle" />
             </div>
-            <input value={ editTodo } onChange={ e => setEditTodo(e.target.value) } type="text" />
+            <input 
+                   style={ {textDecoration: completed ? 'line-through' : '' } } 
+                   value={ editTodo } 
+                   onChange={ e => setEditTodo(e.target.value) } 
+                   type="text" 
+            />
             <div onClick={ updateItem }>
                 <SaveBtn className="fas fa-check" />
             </div>
