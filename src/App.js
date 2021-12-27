@@ -45,13 +45,32 @@ function App() {
   
   const [sidebarToggle, setSidebarToggle] = useState(true);
 
+  const todoCates = [
+    {
+      title: 'Personal',
+      color: '#FD76A1',
+      icon: 'fas fa-user'
+    },
+
+    {
+      title: 'Work',
+      color: '#EE5A24',
+      icon: 'fas fa-suitcase'
+    },
+
+    {
+      title: 'Profit with react',
+      color: '#5758BB',
+      icon: 'fas fa-money-check-alt'
+    }
+  ]
+
   return (
     <Wrapper>
 
       <Header />
-
       <Main>
-        <Sidebar sidebarToggle={ sidebarToggle } />
+        <Sidebar sidebarToggle={ sidebarToggle } todoCates={ todoCates } />
         <MainContent style={ {width: `calc(100vw - ${sidebarToggle ? `350px` : '85px'})`} }>
           <TodoContent>
             <Title>Dashboard</Title>
