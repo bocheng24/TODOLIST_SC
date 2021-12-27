@@ -45,10 +45,10 @@ const Profile = styled.div`
     }
 `;
 
-function Header() {
+function Header({ sidebarToggle, setSidebarToggle }) {
     return (
         <Wrapper>
-            <HeaderItem>
+            <HeaderItem onClick={ () => setSidebarToggle(!sidebarToggle) }>
                 <i className="fas fa-bars"></i>
             </HeaderItem>
 

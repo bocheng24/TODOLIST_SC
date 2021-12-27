@@ -68,7 +68,7 @@ function App() {
   return (
     <Wrapper>
 
-      <Header />
+      <Header sidebarToggle={ sidebarToggle } setSidebarToggle={ setSidebarToggle }/>
       <Main>
         <Sidebar sidebarToggle={ sidebarToggle } todoCates={ todoCates } />
         <MainContent style={ {width: `calc(100vw - ${sidebarToggle ? `350px` : '85px'})`} }>
