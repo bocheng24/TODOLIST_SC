@@ -1,7 +1,9 @@
+import { useState } from 'react/cjs/react.development';
 import styled from 'styled-components';
 
 // Components
 import Header from './components/Header';
+import Sidebar from './components/Sidebar';
 import TodoList from './components/TodoList';
 
 const Wrapper = styled.div`
@@ -18,7 +20,6 @@ const Main = styled.div`
 const MainContent = styled.div`
   display: flex;
   justify-content: center;
-  width: 100vw;
 `;
   
 const TodoContent = styled.div`
@@ -42,12 +43,16 @@ const Greeting = styled.div`
 
 function App() {
   
+  const [sidebarToggle, setSidebarToggle] = useState(true);
+
   return (
     <Wrapper>
+
       <Header />
 
       <Main>
-        <MainContent>
+        <Sidebar sidebarToggle={ sidebarToggle } />
+        <MainContent style={ {width: `calc(100vw - ${sidebarToggle ? `350px` : '85px'})`} }>
           <TodoContent>
             <Title>Dashboard</Title>
             <Greeting>Good Day, Joe!</Greeting>
