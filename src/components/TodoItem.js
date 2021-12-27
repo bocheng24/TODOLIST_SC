@@ -60,7 +60,7 @@ const SaveBtn = styled.i`
     }
 `;
 
-function TodoItem({ todoList, setTodoList, todo }) {
+function TodoItem({ todoList, setTodoList, todo, color }) {
 
     let {id, completed} = todo;
     const [editTodo, setEditTodo] = useState('');
@@ -93,7 +93,7 @@ function TodoItem({ todoList, setTodoList, todo }) {
 
     return (
         <ListItem>
-            <div onClick={ completeItem } style={ {color: completed ? 'rgb(0, 184, 148)' : '#fbc531'} }>
+            <div onClick={ completeItem } style={ {color: completed ? 'rgb(0, 184, 148)' : `${color}`} }>
                 <CheckBox className="fas fa-circle" />
             </div>
             <input 
@@ -102,7 +102,7 @@ function TodoItem({ todoList, setTodoList, todo }) {
                    onChange={ e => setEditTodo(e.target.value) } 
                    type="text" 
             />
-            {todo.title !== editTodo && (
+            {(todo.title !== editTodo && !todo.complete) && (
                 <div onClick={ updateItem }>
                     <SaveBtn className="fas fa-check" />
                 </div>

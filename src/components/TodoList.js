@@ -29,7 +29,6 @@ const CategoryHeader = styled.div`
 `;
 
 const CategoryIcon = styled.div`
-    background-color: #FD76A1;
     padding: 6px 8px;
     border-radius: 5px;
     margin-right: 5px;
@@ -67,7 +66,7 @@ const AddBtn = styled.div`
     }
 `;
 
-function TodoList() {
+function TodoList({ title, color, icon }) {
     const [todo, setTodo] = useState('');
     const [todoList, setTodoList] = useState([]);
 
@@ -96,8 +95,8 @@ function TodoList() {
     return (
         <Wrapper>
             <CategoryHeader>
-                <CategoryIcon>
-                    <i className="fas fa-user"></i>
+                <CategoryIcon style={ {backgroundColor: `${color}`} }>
+                    <i className={ icon }></i>
                 </CategoryIcon>
 
                 <CategoryType>
@@ -120,7 +119,9 @@ function TodoList() {
             { todoList.map( (todo, idx) => <TodoItem todoList={ todoList } 
                                                      setTodoList={ setTodoList } 
                                                      todo={ todo } 
-                                                     key={ idx } /> ) }
+                                                     key={ idx }
+                                                     color={ color }
+                                                     /> ) }
         </Wrapper>
     )
 }

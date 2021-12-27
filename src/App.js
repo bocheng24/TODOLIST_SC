@@ -75,7 +75,15 @@ function App() {
           <TodoContent>
             <Title>Dashboard</Title>
             <Greeting>Good Day, Joe!</Greeting>
-            <TodoList />
+            {
+              todoCates.map(cate => <TodoList 
+                                      key={ cate.title }
+                                      title={ cate.title }
+                                      color={ cate.color }
+                                      icon={ cate.icon }
+                                     />)
+            }
+            
           </TodoContent>
         </MainContent>
       </Main>

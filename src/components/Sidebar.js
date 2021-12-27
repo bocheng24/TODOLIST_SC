@@ -53,9 +53,9 @@ function Sidebar({ sidebarToggle, todoCates}) {
             <CategoryList>
                 {
                     todoCates.map( cate => (
-                        <Category>
+                        <Category key={cate.title}>
                             <CategoryIcon style={ {backgroundColor: `${cate.color}`} }>
-                                <i class={ cate.icon }></i>
+                                <i className={ cate.icon }></i>
                             </CategoryIcon>
                             { sidebarToggle && <span>{ cate.title }</span> }
                         </Category>
